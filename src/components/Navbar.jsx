@@ -25,14 +25,15 @@ export default function Navbar() {
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/profile">Profile</Link>
 
-        {/* ✅ ADMIN LINK */}
         {user?.role === "admin" && (
           <Link to="/admin/users">Users</Link>
         )}
       </div>
 
       {user && (
-        <button onClick={logout}>Logout</button>
+        <button type="button" onClick={logout}>
+          Logout
+        </button>
       )}
     </nav>
   );
