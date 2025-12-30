@@ -1,5 +1,7 @@
+// src/pages/Signup.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { apiRequest } from "../api/api";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -40,18 +42,14 @@ export default function Signup() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/signup", {
+      const data = await apiRequest("/auth/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fullName: form.fullName,
           email: form.email,
           password: form.password,
         }),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
 
       localStorage.setItem("token", data.token);
       navigate("/dashboard");
