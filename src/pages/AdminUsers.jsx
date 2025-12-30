@@ -4,10 +4,11 @@ import { apiRequest } from "../api/api";
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  // Fetch users (admin only)
   const fetchUsers = async () => {
     setLoading(true);
     setError("");
@@ -27,6 +28,7 @@ export default function AdminUsers() {
     fetchUsers();
   }, [page]);
 
+  // Activate / Deactivate user
   const toggleStatus = async (user) => {
     const action =
       user.status === "active" ? "deactivate" : "activate";
@@ -45,7 +47,7 @@ export default function AdminUsers() {
       setSuccess(`User ${action}d successfully`);
       fetchUsers();
     } catch (err) {
-      setError(err.message || "Action failed");
+      setError(err.message || "Failed to update user status");
     }
   };
 
@@ -112,9 +114,8 @@ export default function AdminUsers() {
                     </td>
                     <td className="border p-2">
                       <button
-                        onClick={() =>
-                          toggleStatus(user)
-                        }
+                        type="button"
+                        onClick={() => toggleStatus(user)}
                         className={`px-3 py-1 rounded text-white ${
                           user.status === "active"
                             ? "bg-red-600"
@@ -135,6 +136,7 @@ export default function AdminUsers() {
           {/* Pagination */}
           <div className="flex justify-between items-center mt-4">
             <button
+              type="button"
               disabled={page === 1}
               onClick={() => setPage(page - 1)}
               className="px-4 py-2 border rounded disabled:opacity-50"
@@ -145,6 +147,7 @@ export default function AdminUsers() {
             <span>Page {page}</span>
 
             <button
+              type="button"
               disabled={users.length < 10}
               onClick={() => setPage(page + 1)}
               className="px-4 py-2 border rounded disabled:opacity-50"
