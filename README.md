@@ -1,16 +1,134 @@
-# React + Vite
+# Frontend – User Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React-based frontend for the Mini User Management System with role-based navigation and protected routes.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧱 Tech Stack
 
-## React Compiler
+- React (Hooks)
+- Vite
+- Tailwind CSS
+- React Router DOM
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+The app will run on `http://localhost:5173` by default.
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the frontend directory or configure in Netlify:
+
+```env
+VITE_API_URL=https://user-management-system-backend-pf5h.onrender.com/api
+```
+
+---
+
+## 🚀 Deployment
+
+Deployed on **Netlify** with the following configuration:
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Environment variables injected at build time
+- SPA routing handled using `_redirects` file
+
+**Live App:** https://<your-frontend>.netlify.app
+
+---
+
+## ✨ Features
+
+### Authentication
+- User signup with validation
+- Secure login
+- JWT token management
+- Auto-logout on token expiration
+
+### User Dashboard
+- View profile information
+- Update name and email
+- Change password
+- Logout functionality
+
+### Admin Dashboard
+- View all users in paginated table
+- Activate/deactivate users
+- Role-based UI elements
+- Search and filter users
+
+### UI/UX
+- Fully responsive design
+- Clean and modern interface
+- Loading states and error handling
+- Protected routes based on authentication
+- Role-based navigation
+
+---
+
+## 📂 Project Structure
+
+```
+frontend/
+├── public/
+│   └── _redirects
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── context/
+│   ├── utils/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+└── package.json
+```
+
+---
+
+## 🛠️ Development
+
+Start development server:
+```bash
+npm run dev
+```
+
+Build for production:
+```bash
+npm run build
+```
+
+Preview production build:
+```bash
+npm run preview
+```
+
+---
+
+## 📦 Dependencies
+
+```json
+{
+  "react": "^18.x",
+  "react-dom": "^18.x",
+  "react-router-dom": "^6.x",
+  "axios": "^1.x"
+}
+```
+
+---
+
+## 🎨 Styling
+
+The application uses **Tailwind CSS** for styling with a custom color scheme and responsive design system.
+
+Configuration can be found in `tailwind.config.js`.
